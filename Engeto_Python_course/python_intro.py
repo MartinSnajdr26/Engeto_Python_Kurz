@@ -1,15 +1,24 @@
-hockey = {
-    "league": "NHL",
-    "Teams": 32,
-    "Players": [
-        {"name": "Rudy Gay", "position": "Center", "goals": 38},
-        {"name": "Lewis Carroll", "position": "Left Wing", "goals": 29},
-        {"name": "Matt Gasparro", "position": "Defense", "goals": 22},
-        {"name": "Dave Carroll", "position": "Goalie", "goals": 0}  
-    ]
-}
+leden = ["Nový rok", "Karina / Vasil", "Radmila / Radomil", "Diana", "Dalimil", "Tři králové", "Vilma", "Čestmír",
+    "Vladan / Valtr", "Břetislav", "Bohdana", "Pravoslav", "Edita", "Radovan", "Alice", "Ctirad", "Drahoslav",
+    "Vladislav / Vladislava", "Doubravka", "Ilona / Sebastián", "Běla", "Slavomír / Slavomíra", "Zdeněk", "Milena",
+    "Miloš", "Zora", "Ingrid", "Otýlie", "Zdislava", "Robin / Erna", "Marika",]
 
-print(hockey["Players"])
+unor = ["Nový rok", "Karina / Vasil", "Radmila / Radomil", "Diana", "Dalimil", "Tři králové", "Vilma", "Čestmír",
+    "Vladan / Valtr", "Břetislav", "Bohdana", "Pravoslav", "Edita", "Radovan", "Alice", "Ctirad", "Drahoslav",
+    "Vladislav / Vladislava", "Doubravka", "Ilona / Sebastián", "Oldřich", "Lenka / Eleonora", "Petr", "Svatopluk",
+    "Matěj / Matyáš", "Liliana", "Dorota", "Alexandr", "Lumír", "Horymír"]
 
+leden = set(leden)
+unor = set(unor)
 
+print("Svátek jak v lednu, tak v únoru:")
+print(leden & unor)
 
+print("\nSvátek v lednu, ale ne v únoru:")
+print(leden - unor)
+
+print("\nSvátek v únoru, ale ne v lednu:")
+print(unor - leden)
+
+print("\nSvátek jenom v lednu nebo jenom v únoru:")
+print(leden ^ unor)
