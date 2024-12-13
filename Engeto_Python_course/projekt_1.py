@@ -4,6 +4,7 @@ projekt_1.py: první projekt do Engeto Online Python Akademie
 author: Martin Snajdr
 email: martin.snajdr.japan@gmail.com
 """
+
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly impressive
@@ -29,112 +30,105 @@ are found in multiple limestone layers, which lie some
 represent several varieties of perch, as well as
 other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish,
-garpike and stingray are also present.'''
-]
+garpike and stingray are also present.''']
 
-user_name = input("Please Enter your USER_NAME: ")
-password = input("Please Enter your PASSWORD: ")
+# Přihlašovací údaje
+user_name = input("username: ")
+password = input("password: ")
 
 registered_users = {"bob": "123",
                     "ann": "pass123",
                     "mike": "password123",
                     "liz": "pass123"}
 
-text_parts = {index: text for index, text in enumerate(TEXTS)} # prevod textu do dictionary s indexem 
-
-# Slovník pro výsledky analýzy
-results = {}
-
-words_lenght = {}
-
-# Iterace přes všechny texty
-for index, text in text_parts.items():
-    # Inicializace proměnných pro analýzu
-    word_count = 0
-    capitalized_words = 0  # Slova začínající velkým písmenem
-    uppercase_words = 0  # Slova psaná velkými písmeny
-    lowercase_words = 0  # Slova psaná malými písmeny
-    numeric_count = 0  # Počet čísel
-    numeric_sum = 0  # Součet všech čísel
-
-    # Iterace přes slova v aktuálním textu
-    for word in text.split():
-        word_count += 1  # Počet slov
-
-        # Slovo začíná velkým písmenem (např. "Word")
-        if word.istitle():
-            capitalized_words += 1
-        
-        # Slovo je psáno pouze velkými písmeny (např. "WORD")
-        if word.isupper():
-            uppercase_words += 1
-        
-        # Slovo je psáno pouze malými písmeny (např. "word")
-        if word.islower():
-            lowercase_words += 1
-        
-        # Pokud je slovo číslo (např. "123")
-        if word.isdigit():
-            numeric_count += 1
-            numeric_sum += int(word)  # Převod na číslo a přičtení k součtu
-
-    # Uložení výsledků do slovníku
-    results[index] = {
-        "word_count": word_count,
-        "capitalized_words": capitalized_words,
-        "uppercase_words": uppercase_words,
-        "lowercase_words": lowercase_words,
-        "numeric_count": numeric_count,
-        "numeric_sum": numeric_sum,
-    }
-
-
-for word in text.split():
-    words_lenght[word] = len(word)
-
-for index, words_lenght in word.items():
-    words_lenght[word] += 1
-
-
-# Zjištění, jestli uživatel je registrován
+# Ověření přihlášení
 if user_name in registered_users and registered_users[user_name] == password:
-    print(f"Welcome to the app, {user_name}.\nWe have 3 texts to be analyzed.")
-    
-    # Uživatelský výběr
-    choice = input("Please select 1 of 3 texts for analysis: ")
-    
+    print(f"""
+{'-' * 40}
+Welcome to the app, {user_name}.
+We have 3 texts to be analyzed.
+""")
+
+    # Slovník pro texty
+    text_parts = {index: text for index, text in enumerate(TEXTS)}
+
+    # Inicializace výsledků
+    results = {}
+
+    # Iterace přes všechny texty
+    for index, text in text_parts.items():
+        # Inicializace proměnných pro analýzu
+        word_count = 0
+        capitalized_words = 0  # Slova začínající velkým písmenem
+        uppercase_words = 0  # Slova psaná velkými písmeny
+        lowercase_words = 0  # Slova psaná malými písmeny
+        numeric_count = 0  # Počet čísel
+        numeric_sum = 0  # Součet všech čísel
+
+        # Iterace přes slova v aktuálním textu
+        for word in text.split():
+            word_count += 1  # Počet slov
+
+            if word.istitle():  # Slovo začíná velkým písmenem
+                capitalized_words += 1
+            if word.isupper():  # Slovo je psáno pouze velkými písmeny
+                uppercase_words += 1
+            if word.islower():  # Slovo je psáno pouze malými písmeny
+                lowercase_words += 1
+            if word.isdigit():  # Pokud je slovo číslo
+                numeric_count += 1
+                numeric_sum += int(word)
+
+        # Uložení výsledků do slovníku
+        results[index] = {
+            "word_count": word_count,
+            "capitalized_words": capitalized_words,
+            "uppercase_words": uppercase_words,
+            "lowercase_words": lowercase_words,
+            "numeric_count": numeric_count,
+            "numeric_sum": numeric_sum,
+        }
+
+    # Uživatelský výběr textu
+    choice = input(f"{'-' * 40}\nEnter a number btw. 1 and 3 to selects: ")
+
     if choice.isdigit():  # Kontrola, zda je vstup číslo
-        choice = int(choice)  # Převod na celé číslo
-        if 1 <= choice <= 3:  # Kontrola, zda je číslo v rozsahu
-            print(f"You selected text {choice}. Proceeding to analysis...")
-            if choice == 1: 
-                print(
-                    f"There are {results[word_count]} words in the selected text"\n
-                    f"There are {results[capitalized_words]} capitalized words"\n
-                    f"There are {results[uppercase_words]} uppercase words"\n
-                    f"There are {results[lowercase_words]} lowercase words"\n
-                    f"There are {results[numeric_count]} numeric strings"\n"
-                    f"The sum of all numbers is {reuslts[numeric_sum]}."
-                )
-                print
-            elif choice == 2:
-                print(
-                    f"There are {results[word_count]} words in the selected text"\n
-                    f"There are {results[capitalized_words]} capitalized words"\n
-                    f"There are {results[uppercase_words]} uppercase words"\n
-                    f"There are {results[lowercase_words]} lowercase words"\n
-                    f"There are {results[numeric_count]} numeric strings"\n"
-                    f"The sum of all numbers is {reuslts[numeric_sum]}."
-                )
-            elif choice == 3:
-                print(
-                    f"There are {results[word_count]} words in the selected text"\n
-                    f"There are {results[capitalized_words]} capitalized words"\n
-                    f"There are {results[uppercase_words]} uppercase words"\n
-                    f"There are {results[lowercase_words]} lowercase words"\n
-                    f"There are {results[numeric_count]} numeric strings"\n"
-                    f"The sum of all numbers is {reuslts[numeric_sum]}."
-                )
+        choice = int(choice) - 1  # Převod na index
+        if 0 <= choice < len(text_parts):  # Kontrola rozsahu
+            text = text_parts[choice]
+
+            # Výstup analýzy textu
+            selected_results = results[choice]
+
+            print(f"""
+{'-' * 40}
+There are {selected_results['word_count']} words in the selected text.
+There are {selected_results['capitalized_words']} titlecase words.
+There are {selected_results['uppercase_words']} uppercase words.
+There are {selected_results['lowercase_words']} lowercase words.
+There are {selected_results['numeric_count']} numeric strings.
+The sum of all the numbers is {selected_results['numeric_sum']}
+{'-' * 40}
+""")
+
+            # Analýza délek slov
+            word_length = {}
+            for word in text.split():
+                word = word.strip(",.:;")  # Odstranění interpunkce
+                length = len(word)
+                if length > 0:  # Kontrola, že délka slova je větší než 0
+                    if length in word_length:
+                        word_length[length] += 1
+                    else:
+                        word_length[length] = 1
+
+            # Výstup analýzy délek slov
+            print("LEN | OCCURRENCES    | NR.")
+            print("-" * 40)
+            for length, count in sorted(word_length.items()):  # Řazení podle délky slova
+                stars = "*" * count
+                print(f"{length:>3} | {stars:<15} | {count}")
+
         else:
             print("Invalid input. You did not select a number between 1 and 3. Terminating the program...")
             exit()
