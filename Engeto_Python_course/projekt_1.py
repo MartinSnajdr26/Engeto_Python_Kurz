@@ -71,7 +71,7 @@ We have 3 texts to be analyzed.
 
             if word.istitle():  # Slovo začíná velkým písmenem
                 capitalized_words += 1
-            if word.isupper():  # Slovo je psáno pouze velkými písmeny
+            if word.isupper() and word.isalpha():  # Slovo je psáno pouze velkými písmeny
                 uppercase_words += 1
             if word.islower():  # Slovo je psáno pouze malými písmeny
                 lowercase_words += 1
